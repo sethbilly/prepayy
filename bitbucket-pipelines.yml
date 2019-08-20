@@ -1,0 +1,20 @@
+# You can use a Docker image from Docker Hub or your own container
+# registry for your build environment.
+image: phpunit/phpunit:5.4.0
+
+pipelines:
+  default:
+    - step:
+        script:
+          - composer install
+          - phpunit --verbose --debug --no-coverage
+  branches:
+    develop:
+      - step:
+          script:
+            - composer install
+            - phpunit --verbose --debug --no-coverage
+            - mkdir -p ~/.ssh
+            - cat bin/known_hosts >> ~/.ssh/known_hosts
+            - (umask 077; echo $QLS_SANDBOX_PRIVATE_SSH_KEY | base64 --decode > ~/.ssh/id_rsa)
+            - ssh deploy@qlsportal.com 'bash -s' < bin/deploy-sandbox.sh

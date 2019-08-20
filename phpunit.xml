@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="bootstrap/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./src</directory>
+            <exclude>
+                <directory>./routes</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="BROADCAST_DRIVER" value="log"/>
+        <env name="DB_CONNECTION" value="testing"/>
+        <!-- For some unexplained reason, database config is not being read from the testing config -->
+        <env name="MAIL_DRIVER" value="log"/>
+        <env name="STORAGE_DRIVER" value="public"/>
+        <!-- Dummy s3 credentials added here to test generation of object urls for S3 storage driver -->
+        <env name="S3_KEY" value="S37SDJJZYKDA"/>
+        <env name="S3_SECRET" value="nmPNPs1VHy23zE44sijLTd"/>
+        <env name="S3_BUCKET" value="qlsportal"/>
+        <env name="S3_REGION" value="us-west-2"/>
+    </php>
+    <logging>
+        <log type="coverage-html" target="./coverage" charset="UTF-8"
+             yui="true" highlight="true"
+             lowUpperBound="50" highLowerBound="80" />
+    </logging>
+</phpunit>

@@ -1,0 +1,32 @@
+#dd-user-menu {
+    font-size: 16px;
+}
+.white-text {
+    color: #FFFFFF;
+}
+.footer {
+    color: #30373b;
+}
+.contact {
+    background-color: #FFFFFF;
+}
+body {
+    background-color: #F7F7F7;
+}
+.btn {
+    padding: .5rem 1rem;
+    font-size: 14px;
+}
+.login {
+    font-size: 15px;
+    padding-left: 18px
+}
+.site-header {
+    padding: 19px 16px 0 0;
+}
+.simple-text li {
+    position: relative;
+    padding-left: 21px;
+    margin-bottom: 18px;
+    font-size: 16px;
+}
